@@ -9,8 +9,20 @@ import CoreBluetooth
 private let uuid: String = "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
 private let rx = "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
 private let tx = "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
+var date1 = NSDate()
 
 class ViewController: UIViewController {
+    
+    @IBAction func showAlert(_ sender: AnyObject) {
+        let date2 = NSDate().timeIntervalSince(date1 as Date);
+        if (date2 > 10){
+            let alertController = UIAlertController(title: "ERROR  CODE 8", message: "Battery Temperature Warning", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+            date1 = NSDate();
+        }
+    }
+    
     
     var manager: CBCentralManager?
     var peripheral: CBPeripheral?
