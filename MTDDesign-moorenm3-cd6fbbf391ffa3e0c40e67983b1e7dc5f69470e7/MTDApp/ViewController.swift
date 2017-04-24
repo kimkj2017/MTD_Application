@@ -46,9 +46,25 @@ class ViewController: UIViewController {
     }
     var read: CBCharacteristic?
     
+    @IBOutlet weak var motorTempMain = UILabel()
+    //@IBOutlet weak var motorTempPage = UILabel()
+    @IBOutlet weak var ctrlTempMain = UILabel()
+    //@IBOutlet weak var ctrlTempPage = UILabel()
+    @IBOutlet weak var hpMain = UILabel()
+    //@IBOutlet weak var hpPage = UILabel()
+    @IBOutlet weak var motorSpeedMain = UILabel()
+    //@IBOutlet weak var motorSpeedPage = UILabel()
+    @IBOutlet weak var currentMain = UILabel()
+    //@IBOutlet weak var currentPage = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         manager = CBCentralManager(delegate: self, queue: nil)
+        motorTempMain?.text = String(arc4random_uniform(999))
+        ctrlTempMain?.text = String(arc4random_uniform(999))
+        hpMain?.text = String(arc4random_uniform(999))
+        motorSpeedMain?.text = String(arc4random_uniform(999))
+        currentMain?.text = String(arc4random_uniform(999))
     }
 }
 
