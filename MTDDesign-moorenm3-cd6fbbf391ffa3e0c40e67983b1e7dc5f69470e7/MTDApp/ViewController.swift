@@ -56,15 +56,18 @@ class ViewController: UIViewController {
     //@IBOutlet weak var motorSpeedPage = UILabel()
     @IBOutlet weak var currentMain = UILabel()
     //@IBOutlet weak var currentPage = UILabel()
+    @IBOutlet weak var saved = UILabel()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         manager = CBCentralManager(delegate: self, queue: nil)
-        motorTempMain?.text = String(arc4random_uniform(999))
-        ctrlTempMain?.text = String(arc4random_uniform(999))
-        hpMain?.text = String(arc4random_uniform(999))
-        motorSpeedMain?.text = String(arc4random_uniform(999))
-        currentMain?.text = String(arc4random_uniform(999))
+        motorTempMain?.text = String(arc4random_uniform(999)) + " °C"
+        ctrlTempMain?.text = String(arc4random_uniform(999)) + " °C"
+        hpMain?.text = String(arc4random_uniform(999)) + " HP"
+        motorSpeedMain?.text = String(arc4random_uniform(999)) + " MPH"
+        currentMain?.text = String(arc4random_uniform(999)) + " A"
+        saved?.text = "You have saved $" + String(arc4random_uniform(999)) + " now!"
     }
 }
 
