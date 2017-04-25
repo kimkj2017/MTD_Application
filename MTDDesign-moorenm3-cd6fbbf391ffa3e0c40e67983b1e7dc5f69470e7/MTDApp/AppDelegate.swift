@@ -2,9 +2,6 @@
 //  AppDelegate.swift
 //  MTDApp
 //
-//  Created by Brown, Drew J. on 10/30/16.
-//  Copyright © 2016 MTDGroup. All rights reserved.
-//
 
 import UIKit
 
