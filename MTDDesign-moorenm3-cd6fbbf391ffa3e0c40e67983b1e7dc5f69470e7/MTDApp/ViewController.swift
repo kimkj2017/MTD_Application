@@ -12,15 +12,15 @@ private let tx = "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
 var date1 = NSDate()
 
 class ViewController: UIViewController {
-    
-    
     @IBAction func showAlert(_ sender: AnyObject) {
         let date2 = NSDate().timeIntervalSince(date1 as Date);
+        if (date2 > 10) {
             let alertController = UIAlertController(title: "ERROR  CODE 8", message: "Battery Temperature Warning", preferredStyle: UIAlertControllerStyle.alert)
             alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
             date1 = NSDate();
         
+        }
     }
     
     @IBOutlet weak var battery1LabelMain = UILabel()
@@ -69,7 +69,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager = CBCentralManager(delegate: self, queue: nil)
         manager = CBCentralManager(delegate: self, queue: nil)
         battery1LabelMain?.text = "120 %" // battery1LabelPage?.text
         battery2LabelMain?.text = "32 %" //battery2LabelPage?.text
