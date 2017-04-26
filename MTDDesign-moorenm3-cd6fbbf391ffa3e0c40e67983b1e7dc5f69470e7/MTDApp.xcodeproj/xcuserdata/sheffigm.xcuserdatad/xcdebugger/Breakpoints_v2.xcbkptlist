@@ -6,20 +6,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MTDApp/ViewController.swift"
-            timestampString = "514776960.626472"
-            timestampString = "514905758.889283"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
-            landmarkName = "ViewController"
-            landmarkType = "4">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

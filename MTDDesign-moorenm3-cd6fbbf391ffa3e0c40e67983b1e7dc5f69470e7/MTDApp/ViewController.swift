@@ -119,15 +119,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         manager = CBCentralManager(delegate: self, queue: nil)
-<<<<<<< Updated upstream
         setData()
-=======
-        battery1LabelMain?.text = "120 %" // battery1LabelPage?.text
-        battery2LabelMain?.text = "32 %" //battery2LabelPage?.text
-        ctrlTempMain?.text = "76" //ctrlTempPage?.text
-        motorTempMain?.text = "98" //motorTempPage?.text
-        currentMain?.text = "352" //currentPage?.text
->>>>>>> Stashed changes
+//        battery1LabelMain?.text = "120 %" // battery1LabelPage?.text
+//        battery2LabelMain?.text = "32 %" //battery2LabelPage?.text
+//        ctrlTempMain?.text = "76" //ctrlTempPage?.text
+//        motorTempMain?.text = "98" //motorTempPage?.text
+//        currentMain?.text = "352" //currentPage?.text
     }
 }
 
