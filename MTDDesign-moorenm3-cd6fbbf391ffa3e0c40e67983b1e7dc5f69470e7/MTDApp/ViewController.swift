@@ -9,6 +9,7 @@ import CoreBluetooth
 private let uuid: String = "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
 private let rx = "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
 private let tx = "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
+var dataStream = ""
 var date1 = NSDate()
 
 class ViewController: UIViewController {
@@ -40,22 +41,27 @@ class ViewController: UIViewController {
     
     var manager: CBCentralManager?
     var peripheral: CBPeripheral?
-    var write: CBCharacteristic? // {
-//        didSet {
-//            // Comment this all out when connecting to lawnmower
-//            // 6). Called when writing to the device
-//            if let write = write {
-//                if let test = "00112233445566778899".data(using: .utf8) {
-//                    
-//                    //"#0,00000,0000,0000,0000,0000,0,000,000,00,00,000,000,000,000,000,000,00000,00000,0000,0,0,00,0000,00000,0\n"
-//                    
-//                    print("Sending...")
-//                    peripheral?.writeValue(test, for: write, type: CBCharacteristicWriteType.withResponse)
-//                    //print("Wrote to device\n")
-//                }
-//            }
-//        }
-    //}
+    var write: CBCharacteristic?  {
+        didSet {
+            // Comment this all out when connecting to lawnmower
+            // 6). Called when writing to the device
+            if let write = write {
+                /*if let test = "+++\r\n".data(using: .utf8) {//+++\r\nAT+BAUDRATE=115200\r\n+++\r\nhello\r\n".data(using: .utf8) {
+    
+                    print("Sending... \(String(describing: test))")
+                    peripheral?.writeValue(test, for: write, type: CBCharacteristicWriteType.withResponse)
+                    //print("Wrote to device\n")
+                }*/
+                if let test = "AT+HELP\r\n".data(using: .utf8) {//+++\r\nAT+BAUDRATE=115200\r\n+++\r\nhello\r\n".data(using: .utf8) {
+                    
+                    print("Sending... \(String(describing: test))")
+                    peripheral?.writeValue(test, for: write, type: CBCharacteristicWriteType.withResponse)
+                    //print("Wrote to device\n")
+                }
+                
+            }
+        }
+    }
     
     var read: CBCharacteristic?  {
         didSet {
@@ -113,7 +119,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         manager = CBCentralManager(delegate: self, queue: nil)
+<<<<<<< Updated upstream
         setData()
+=======
+        battery1LabelMain?.text = "120 %" // battery1LabelPage?.text
+        battery2LabelMain?.text = "32 %" //battery2LabelPage?.text
+        ctrlTempMain?.text = "76" //ctrlTempPage?.text
+        motorTempMain?.text = "98" //motorTempPage?.text
+        currentMain?.text = "352" //currentPage?.text
+>>>>>>> Stashed changes
     }
 }
 
@@ -133,10 +147,80 @@ extension ViewController: CBPeripheralDelegate {
             return
         }
         
+        print("\(characteristic)\n")
+        //let  n = characteristic.value
+        
+        /*
+        let a = n?.count
+        print(a)
+        let bbb = UnsafeMutableRawPointer.allocate(bytes: 1000, alignedTo: 1)
+        n.copyBytes(to: bbb.assumingMemoryBound(to: BYTE_SIZE))
+        for q in bbb {
+            print(q)
+        }
+        */
+        
+        
+        //print("\(String(describing: characteristic.value))\n")
+        /*
+        // Parse characteristic
+        let parts = String(describing: characteristic).components(separatedBy: ",")
+        let valSep = parts[3].components(separatedBy: "<")
+        let val = (valSep[1].components(separatedBy: ">"))[0]
+        
+        // Parse and add to dataStream
+        var comma = false
+        var pound = false
+        var newLine = false
+        for i in val.characters {
+            if (i == "3" && pound == true) {
+                // Start of a stream
+                //dataStream = ""
+                dataStream += "#"
+            } else if (i == "a" && newLine == true){
+                // Send dataStream to parser
+                dataStream += "ENDOFSTREAM\n\n"
+            } else if (i == "c" && comma == true) {
+                dataStream += ","
+            } else {
+                dataStream += String(describing: i)
+            }
+            
+            if (i == "2") {
+                pound = true
+                comma = true
+            } else {
+                pound = false
+                comma = false
+            }
+            
+            if (i == "0") {
+                newLine = true
+            } else {
+                newLine = false
+            }
+            
+            //print(i)
+        }
+        */
+        // dataStream += String(describing: characteristic.value)
+        //print("Read In: \(val)\n")
+        //print("Num Bytes: \(String(describing: characteristic.value))\n")
+        //dataStream += val
+        
+        
+        // Incorrect Idea :(
         if let data = characteristic.value {
             //print("Data: \(data)")
-            if let str = String(data: data, encoding: .utf8) {
+        
+            //var bytes = [UInt8](repeating: 0, count: data.count / MemoryLayout<UInt8>.size)
+            //(data as NSData).getBytes(&bytes, length: data.count)
+            //print(bytes)
+            
+            if let str = String(data: data, encoding: String.Encoding.utf8) { //.ascii) {
+            //let str = String(describing: data)
                 print("Read In: \(str)\n")
+                //dataStream += str
                 // Place data in struct?
             }
         }
@@ -228,6 +312,7 @@ extension ViewController: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        print("data: \(dataStream)")
         print("Disconnected from: \(String(describing: peripheral.name))")
     }
     
