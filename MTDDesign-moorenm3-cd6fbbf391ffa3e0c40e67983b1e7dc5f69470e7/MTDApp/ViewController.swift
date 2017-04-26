@@ -22,7 +22,7 @@ struct SampleData {
     var savedAmount = arc4random_uniform(999)
 }
 
-let sample = SampleData()
+let sample = MowerDataStruct()
 
 class ViewController: UIViewController {
     
