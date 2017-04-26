@@ -23,6 +23,7 @@
 		EF26B6A21EB0A374000545B6 /* BatteryTwoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF26B6A11EB0A374000545B6 /* BatteryTwoController.swift */; };
 		EF26B6A41EB0A381000545B6 /* HorsepowerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF26B6A31EB0A381000545B6 /* HorsepowerController.swift */; };
 		EF26B6A61EB0A39E000545B6 /* MotorTempController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF26B6A51EB0A39E000545B6 /* MotorTempController.swift */; };
+		EF540C181EB152CF000DE486 /* MowerDataStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF540C171EB152CF000DE486 /* MowerDataStruct.swift */; };
 		EFF056941EB0A54F00DC63C5 /* CtrlTempController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF056931EB0A54F00DC63C5 /* CtrlTempController.swift */; };
 		EFF056961EB0A56200DC63C5 /* CurrentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF056951EB0A56200DC63C5 /* CurrentController.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		EF26B6A11EB0A374000545B6 /* BatteryTwoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatteryTwoController.swift; sourceTree = "<group>"; };
 		EF26B6A31EB0A381000545B6 /* HorsepowerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorsepowerController.swift; sourceTree = "<group>"; };
 		EF26B6A51EB0A39E000545B6 /* MotorTempController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotorTempController.swift; sourceTree = "<group>"; };
+		EF540C171EB152CF000DE486 /* MowerDataStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MowerDataStruct.swift; sourceTree = "<group>"; };
 		EFF056931EB0A54F00DC63C5 /* CtrlTempController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CtrlTempController.swift; sourceTree = "<group>"; };
 		EFF056951EB0A56200DC63C5 /* CurrentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +138,7 @@
 				EF26B6A51EB0A39E000545B6 /* MotorTempController.swift */,
 				EFF056931EB0A54F00DC63C5 /* CtrlTempController.swift */,
 				EFF056951EB0A56200DC63C5 /* CurrentController.swift */,
+				EF540C171EB152CF000DE486 /* MowerDataStruct.swift */,
 			);
 			path = MTDApp;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				6AC9F2481DC6774B0086A471 /* ViewController.swift in Sources */,
 				EF26B6A41EB0A381000545B6 /* HorsepowerController.swift in Sources */,
 				C1F7419A1E9D006A00ACBF43 /* MowerDataController.swift in Sources */,
+				EF540C181EB152CF000DE486 /* MowerDataStruct.swift in Sources */,
 				EFF056961EB0A56200DC63C5 /* CurrentController.swift in Sources */,
 				EFF056941EB0A54F00DC63C5 /* CtrlTempController.swift in Sources */,
 				EF26B6A21EB0A374000545B6 /* BatteryTwoController.swift in Sources */,
