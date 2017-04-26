@@ -11,6 +11,19 @@ private let rx = "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
 private let tx = "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
 var date1 = NSDate()
 
+struct SampleData {
+    var battery1 = arc4random_uniform(100)
+    var battery2 = arc4random_uniform(100)
+    var motorTemp = arc4random_uniform(999)
+    var ctrlTmp = arc4random_uniform(999)
+    var hp = arc4random_uniform(999)
+    var motorSpeed = arc4random_uniform(999)
+    var current = arc4random_uniform(999)
+    var savedAmount = arc4random_uniform(999)
+}
+
+let sample = SampleData()
+
 class ViewController: UIViewController {
     
     @IBAction func showAlert(_ sender: AnyObject) {
@@ -22,7 +35,6 @@ class ViewController: UIViewController {
             date1 = NSDate();
         }
     }
-    
     
     var manager: CBCentralManager?
     var peripheral: CBPeripheral?
@@ -46,6 +58,8 @@ class ViewController: UIViewController {
     }
     var read: CBCharacteristic?
     
+    @IBOutlet weak var battery1ButtonMain = UIButton()
+    @IBOutlet weak var battery2ButtonMain = UIButton()
     @IBOutlet weak var motorTempMain = UILabel()
     //@IBOutlet weak var motorTempPage = UILabel()
     @IBOutlet weak var ctrlTempMain = UILabel()
@@ -58,16 +72,70 @@ class ViewController: UIViewController {
     //@IBOutlet weak var currentPage = UILabel()
     @IBOutlet weak var saved = UILabel()
     
+    func setData() {
+        if (sample.battery1 > 67) {
+            battery1ButtonMain?.backgroundColor = UIColor.green
+        } else if (sample.battery1 > 33) {
+            battery1ButtonMain?.backgroundColor = UIColor.yellow
+        } else {
+            battery1ButtonMain?.backgroundColor = UIColor.red
+        }
+        if (sample.battery2 > 67) {
+            battery2ButtonMain?.backgroundColor = UIColor.green
+        } else if (sample.battery2 > 33) {
+            battery2ButtonMain?.backgroundColor = UIColor.yellow
+        } else {
+            battery2ButtonMain?.backgroundColor = UIColor.red
+        }
+        motorTempMain?.text = String(sample.motorTemp) + " °C"
+        ctrlTempMain?.text = String(sample.ctrlTmp) + " °C"
+        hpMain?.text = String(sample.hp) + " HP"
+        motorSpeedMain?.text = String(sample.motorSpeed) + " MPH"
+        currentMain?.text = String(sample.current) + " A"
+        saved?.text = "You have saved $" + String(sample.savedAmount) + " now!"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         manager = CBCentralManager(delegate: self, queue: nil)
-        motorTempMain?.text = String(arc4random_uniform(999)) + " °C"
-        ctrlTempMain?.text = String(arc4random_uniform(999)) + " °C"
-        hpMain?.text = String(arc4random_uniform(999)) + " HP"
-        motorSpeedMain?.text = String(arc4random_uniform(999)) + " MPH"
-        currentMain?.text = String(arc4random_uniform(999)) + " A"
-        saved?.text = "You have saved $" + String(arc4random_uniform(999)) + " now!"
+        setData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.destination is MotorSpeedViewController) {
+            var msvc : MotorSpeedViewController = segue.destination as! MotorSpeedViewController
+            msvc.labelText = String(sample.motorSpeed)
+        } else if (segue.destination is BatteryOneController) {
+            var boc : BatteryOneController = segue.destination as! BatteryOneController
+            if (sample.battery1 > 67) {
+                boc.color_ = UIColor.green
+            } else if (sample.battery1 > 33) {
+                boc.color_ = UIColor.yellow
+            } else {
+                boc.color_ = UIColor.red
+            }
+        } else if (segue.destination is BatteryTwoController) {
+            var btc : BatteryTwoController = segue.destination as! BatteryTwoController
+            if (sample.battery2 > 67) {
+                btc.color_ = UIColor.green
+            } else if (sample.battery2 > 33) {
+                btc.color_ = UIColor.yellow
+            } else {
+                btc.color_ = UIColor.red
+            }
+        } else if (segue.destination is HorsepowerController) {
+            var hpc : HorsepowerController = segue.destination as! HorsepowerController
+            hpc.textLabel = String(sample.hp)
+        } else if (segue.destination is MotorTempController) {
+            var mtc : MotorTempController = segue.destination as! MotorTempController
+            mtc.taxLabel = String(sample.motorTemp)
+        } else if (segue.destination is CtrlTempController) {
+            var ctc : CtrlTempController = segue.destination as! CtrlTempController
+            ctc.textField = String(sample.ctrlTmp)
+        } else if (segue.destination is CurrentController) {
+            var crc : CurrentController = segue.destination as! CurrentController
+            crc.textLabel = String(sample.current)
+        }
     }
 }
 

@@ -13,10 +13,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Battery Two Controller-->
         <scene sceneID="CIC-8e-dT0">
             <objects>
-                <viewController id="69G-ZY-wOp" sceneMemberID="viewController">
+                <viewController id="69G-ZY-wOp" customClass="BatteryTwoController" customModule="MTDApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IfI-Je-aTP"/>
                         <viewControllerLayoutGuide type="bottom" id="hkZ-IS-Hop"/>
@@ -220,15 +220,18 @@
                             <constraint firstItem="cf3-ei-1y6" firstAttribute="top" secondItem="iZb-VV-tgb" secondAttribute="bottom" constant="29" id="vAS-fX-IA7"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="batteryButton" destination="PmN-pI-lEI" id="vsd-zZ-wEP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Ff-JX-wOC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1097" y="-483"/>
         </scene>
-        <!--View Controller-->
+        <!--Battery One Controller-->
         <scene sceneID="qEq-2M-kVN">
             <objects>
-                <viewController id="QJc-cd-Gqf" sceneMemberID="viewController">
+                <viewController id="QJc-cd-Gqf" customClass="BatteryOneController" customModule="MTDApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZlI-Rb-gCw"/>
                         <viewControllerLayoutGuide type="bottom" id="dgc-4v-22Y"/>
@@ -434,15 +437,18 @@
                             <constraint firstItem="aQy-R6-htZ" firstAttribute="trailing" secondItem="vdT-nI-q2v" secondAttribute="trailing" id="zvM-eP-PoG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="batteryButton" destination="Rqt-H7-d4C" id="X7P-Jd-4tl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTc-Bt-kcY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-378.39999999999998" y="-824.43778110944538"/>
         </scene>
-        <!--View Controller-->
+        <!--Horsepower Controller-->
         <scene sceneID="3RF-tn-92f">
             <objects>
-                <viewController id="ffe-l1-ihg" sceneMemberID="viewController">
+                <viewController id="ffe-l1-ihg" customClass="HorsepowerController" customModule="MTDApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AKy-Mt-vmV"/>
                         <viewControllerLayoutGuide type="bottom" id="ea8-2c-Nyn"/>
@@ -544,6 +550,9 @@
                             <constraint firstItem="Hxn-d5-DzA" firstAttribute="centerX" secondItem="wGN-Q9-x9h" secondAttribute="centerX" id="xWe-R0-1E3"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="hpLabel" destination="fU6-Gc-bSW" id="Ai5-5y-Yi3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DCN-hd-swb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -912,6 +921,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="battery1ButtonMain" destination="wOf-fY-We9" id="SIA-Ax-dFL"/>
+                        <outlet property="battery2ButtonMain" destination="moP-z1-Gqo" id="REW-Cg-jWa"/>
                         <outlet property="ctrlTempMain" destination="BzK-6T-PPu" id="coP-LP-VZW"/>
                         <outlet property="currentMain" destination="Gi5-Xr-Yma" id="4Lr-9S-oxs"/>
                         <outlet property="hpMain" destination="eDX-tU-nb5" id="u4E-gY-Bo8"/>
@@ -924,10 +935,10 @@
             </objects>
             <point key="canvasLocation" x="-7.2000000000000002" y="-87.706146926536732"/>
         </scene>
-        <!--View Controller-->
+        <!--Ctrl Temp Controller-->
         <scene sceneID="0so-rl-hXl">
             <objects>
-                <viewController id="1GC-B2-OoU" sceneMemberID="viewController">
+                <viewController id="1GC-B2-OoU" customClass="CtrlTempController" customModule="MTDApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8Cq-0U-7WB"/>
                         <viewControllerLayoutGuide type="bottom" id="qwK-AL-Ouv"/>
@@ -1022,15 +1033,18 @@
                             <constraint firstItem="lPu-6e-Vk2" firstAttribute="trailing" secondItem="bA0-ia-H55" secondAttribute="trailing" id="zTP-yk-XnP"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="ctrlLabel" destination="bA0-ia-H55" id="sNM-mo-Uuz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TKg-nd-DeF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1128.8" y="-448.42578710644682"/>
         </scene>
-        <!--View Controller-->
+        <!--Current Controller-->
         <scene sceneID="CA1-OP-LiM">
             <objects>
-                <viewController id="gGd-Q9-Jkq" sceneMemberID="viewController">
+                <viewController id="gGd-Q9-Jkq" customClass="CurrentController" customModule="MTDApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mpo-MR-uWO"/>
                         <viewControllerLayoutGuide type="bottom" id="QBY-Dk-bFm"/>
@@ -1114,6 +1128,9 @@
                             <constraint firstItem="sV7-8J-3aR" firstAttribute="trailing" secondItem="lp4-Qu-3Zt" secondAttribute="trailing" id="z8i-FN-5ym"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="curLabel" destination="rH3-7L-XPl" id="SMU-nt-d8g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G9N-92-36P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1264,10 +1281,10 @@
             </objects>
             <point key="canvasLocation" x="-378.39999999999998" y="672.41379310344837"/>
         </scene>
-        <!--View Controller-->
+        <!--Motor Speed View Controller-->
         <scene sceneID="LJC-ef-hAg">
             <objects>
-                <viewController id="rzx-bT-sNK" sceneMemberID="viewController">
+                <viewController id="rzx-bT-sNK" customClass="MotorSpeedViewController" customModule="MTDApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kGJ-EM-GXs"/>
                         <viewControllerLayoutGuide type="bottom" id="89Q-r3-VXa"/>
@@ -1360,15 +1377,18 @@
                             <constraint firstItem="yWg-SH-LEz" firstAttribute="centerX" secondItem="25r-6I-Jem" secondAttribute="centerX" id="zhg-UU-UKf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="speedLabel" destination="25r-6I-Jem" id="cdP-aR-0LB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Otd-7k-fmV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="376.80000000000001" y="671.51424287856082"/>
         </scene>
-        <!--View Controller-->
+        <!--Motor Temp Controller-->
         <scene sceneID="l3k-3F-AjB">
             <objects>
-                <viewController id="V5p-Qo-Rtt" sceneMemberID="viewController">
+                <viewController id="V5p-Qo-Rtt" customClass="MotorTempController" customModule="MTDApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="c0Y-0P-mPY"/>
                         <viewControllerLayoutGuide type="bottom" id="6J7-WH-0Xn"/>
@@ -1451,6 +1471,9 @@
                             <constraint firstItem="vND-R0-PCq" firstAttribute="leading" secondItem="KSZ-6l-yYG" secondAttribute="leading" id="y4Q-K8-QPe"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mtLabel" destination="A9l-C7-9Xg" id="lhu-MQ-bFA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wLN-tI-PN1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1462,6 +1485,6 @@
         <image name="troy-bilt.png" width="1619" height="226"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fBJ-mu-JQe"/>
+        <segue reference="Hvk-OI-wf9"/>
     </inferredMetricsTieBreakers>
 </document>
