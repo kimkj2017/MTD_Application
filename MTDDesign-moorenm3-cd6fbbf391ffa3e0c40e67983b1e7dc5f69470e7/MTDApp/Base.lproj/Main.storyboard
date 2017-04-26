@@ -228,6 +228,9 @@
                             <constraint firstItem="odh-tD-orw" firstAttribute="centerX" secondItem="cf3-ei-1y6" secondAttribute="centerX" id="zid-n7-BGq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="battery2Page" destination="PmN-pI-lEI" id="DsI-Ax-34J"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Ff-JX-wOC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -452,6 +455,9 @@
                             <constraint firstItem="aQy-R6-htZ" firstAttribute="trailing" secondItem="vdT-nI-q2v" secondAttribute="trailing" id="zvM-eP-PoG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="battery1Page" destination="Rqt-H7-d4C" id="q58-CZ-TTr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTc-Bt-kcY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -562,6 +568,9 @@
                             <constraint firstItem="Hxn-d5-DzA" firstAttribute="centerX" secondItem="wGN-Q9-x9h" secondAttribute="centerX" id="xWe-R0-1E3"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="hpPage" destination="fU6-Gc-bSW" id="6Ot-G1-edJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DCN-hd-swb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -963,6 +972,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="battery1Main" destination="wOf-fY-We9" id="cOa-H0-fhj"/>
+                        <outlet property="battery2Main" destination="moP-z1-Gqo" id="E54-ax-SY8"/>
                         <outlet property="ctrlTempMain" destination="e45-I6-68P" id="BzY-zF-h2g"/>
                         <outlet property="currentMain" destination="98z-Ci-Qya" id="jyc-hC-yZ1"/>
                         <outlet property="hpMain" destination="K2H-7r-KZV" id="e1T-Yu-zou"/>
@@ -1072,6 +1083,9 @@
                             <constraint firstItem="lPu-6e-Vk2" firstAttribute="trailing" secondItem="bA0-ia-H55" secondAttribute="trailing" id="zTP-yk-XnP"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="ctrlTempPage" destination="bA0-ia-H55" id="nv6-ff-JY3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TKg-nd-DeF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1164,6 +1178,9 @@
                             <constraint firstItem="sV7-8J-3aR" firstAttribute="trailing" secondItem="lp4-Qu-3Zt" secondAttribute="trailing" id="z8i-FN-5ym"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="currentPage" destination="rH3-7L-XPl" id="Qvf-9P-7qU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G9N-92-36P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1418,6 +1435,9 @@
                             <constraint firstItem="yWg-SH-LEz" firstAttribute="centerX" secondItem="25r-6I-Jem" secondAttribute="centerX" id="zhg-UU-UKf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="motorSpeedPage" destination="25r-6I-Jem" id="pfG-8F-5qO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Otd-7k-fmV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1519,6 +1539,9 @@
                             <constraint firstItem="vND-R0-PCq" firstAttribute="leading" secondItem="KSZ-6l-yYG" secondAttribute="leading" id="y4Q-K8-QPe"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="motorTempPage" destination="A9l-C7-9Xg" id="Nm2-g4-vST"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wLN-tI-PN1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

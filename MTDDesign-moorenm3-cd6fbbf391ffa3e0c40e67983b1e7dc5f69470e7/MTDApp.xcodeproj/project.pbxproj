@@ -18,6 +18,7 @@
 		C1C1FAF01E677B64001302DF /* troy-bilt.png in Resources */ = {isa = PBXBuildFile; fileRef = C1C1FAEF1E677B64001302DF /* troy-bilt.png */; };
 		C1C1FAF21E677BA2001302DF /* Grass.png in Resources */ = {isa = PBXBuildFile; fileRef = C1C1FAF11E677BA2001302DF /* Grass.png */; };
 		C1F7419A1E9D006A00ACBF43 /* MowerDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F741991E9D006A00ACBF43 /* MowerDataController.swift */; };
+		EF3EB4531EB1565600161FBC /* MowerDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3EB4521EB1565600161FBC /* MowerDataObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		C1C1FAEF1E677B64001302DF /* troy-bilt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "troy-bilt.png"; sourceTree = SOURCE_ROOT; };
 		C1C1FAF11E677BA2001302DF /* Grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Grass.png; sourceTree = SOURCE_ROOT; };
 		C1F741991E9D006A00ACBF43 /* MowerDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MowerDataController.swift; sourceTree = "<group>"; };
+		EF3EB4521EB1565600161FBC /* MowerDataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MowerDataObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				C1F741991E9D006A00ACBF43 /* MowerDataController.swift */,
 				6AC9F2511DC6774B0086A471 /* Info.plist */,
 				C153D3471E5CEC0800488FEF /* Mower.jpg */,
+				EF3EB4521EB1565600161FBC /* MowerDataObject.swift */,
 			);
 			path = MTDApp;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				6AC9F2481DC6774B0086A471 /* ViewController.swift in Sources */,
 				C1F7419A1E9D006A00ACBF43 /* MowerDataController.swift in Sources */,
 				6AC9F2461DC6774B0086A471 /* AppDelegate.swift in Sources */,
+				EF3EB4531EB1565600161FBC /* MowerDataObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,20 +23,20 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var battery1LabelMain = UILabel()
-    //@IBOutlet weak var battery1LabelPage = UILabel()
-    @IBOutlet weak var battery2LabelMain = UILabel()
-    //@IBOutlet weak var battery2LabelPage = UILabel()
+    @IBOutlet weak var battery1Main = UIButton()
+    @IBOutlet weak var battery1Page = UIButton()
+    @IBOutlet weak var battery2Main = UIButton()
+    @IBOutlet weak var battery2Page = UIButton()
     @IBOutlet weak var motorTempMain = UILabel()
-    //@IBOutlet weak var motorTempPage = UILabel()
+    @IBOutlet weak var motorTempPage = UITextField()
     @IBOutlet weak var ctrlTempMain = UILabel()
-    //@IBOutlet weak var ctrlTempPage = UILabel()
+    @IBOutlet weak var ctrlTempPage = UITextField()
     @IBOutlet weak var hpMain = UILabel()
-    //@IBOutlet weak var hpPage = UILabel()
+    @IBOutlet weak var hpPage = UILabel()
     @IBOutlet weak var motorSpeedMain = UILabel()
-    //@IBOutlet weak var motorSpeedPage = UILabel()
+    @IBOutlet weak var motorSpeedPage = UILabel()
     @IBOutlet weak var currentMain = UILabel()
-    //@IBOutlet weak var currentPage = UILabel()
+    @IBOutlet weak var currentPage = UILabel()
     
     var manager: CBCentralManager?
     var peripheral: CBPeripheral?
@@ -67,14 +67,53 @@ class ViewController: UIViewController {
         }
     }
     
+    var sampleData = MowerDataObject.getInstance()
+    
+    func changeBatteryColor() {
+        let battery1Charged = sampleData.getBatteryOne()
+        let battery2Charged = sampleData.getBatteryTwo()
+        if (battery1Charged > 67) {
+            battery1Main?.backgroundColor = UIColor.green
+            battery1Page?.backgroundColor = UIColor.green
+        } else if (battery1Charged > 33) {
+            battery1Main?.backgroundColor = UIColor.yellow
+            battery1Page?.backgroundColor = UIColor.yellow
+        } else {
+            battery1Main?.backgroundColor = UIColor.red
+            battery1Page?.backgroundColor = UIColor.red
+        }
+        if (battery2Charged > 67) {
+            battery2Main?.backgroundColor = UIColor.green
+            battery2Page?.backgroundColor = UIColor.green
+        } else if (battery2Charged > 33) {
+            battery2Main?.backgroundColor = UIColor.yellow
+            battery2Page?.backgroundColor = UIColor.yellow
+        } else {
+            battery2Main?.backgroundColor = UIColor.red
+            battery2Page?.backgroundColor = UIColor.red
+        }
+        
+    }
+    
+    func setData() {
+        changeBatteryColor()
+        ctrlTempMain?.text = String(sampleData.getCtrlTemp())
+        motorTempMain?.text = String(sampleData.getMotorTemp())
+        hpMain?.text = String(sampleData.getHP())
+        currentMain?.text = String(sampleData.getCurrent())
+        motorSpeedMain?.text = String(sampleData.getMotorSpeed())
+        
+        ctrlTempPage?.text = String(sampleData.getCtrlTemp())
+        motorTempPage?.text = String(sampleData.getMotorTemp())
+        hpPage?.text = String(sampleData.getHP())
+        currentPage?.text = String(sampleData.getCurrent())
+        motorSpeedPage?.text = String(sampleData.getMotorSpeed())
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         manager = CBCentralManager(delegate: self, queue: nil)
-        battery1LabelMain?.text = "120 %" // battery1LabelPage?.text
-        battery2LabelMain?.text = "32 %" //battery2LabelPage?.text
-        ctrlTempMain?.text = "999" //ctrlTempPage?.text
-        motorTempMain?.text = "999" //motorTempPage?.text
-        currentMain?.text = "999" //currentPage?.text
+        setData()
     }
 }
 
