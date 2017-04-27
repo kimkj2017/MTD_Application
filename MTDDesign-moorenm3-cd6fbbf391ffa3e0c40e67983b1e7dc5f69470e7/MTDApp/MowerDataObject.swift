@@ -153,13 +153,18 @@ class MowerDataObject {
         return Int(newTmp)
     }
     
-    public func getHP() -> Int {
-        return Int((Int(self.battery1) * self.current)/746)
-        //return self.hp
+    public func getHP() -> Double {
+        let hp = (self.battery1 * Double(self.current)) / 746.0
+
+        let dbhp = String(format: "%.2f", hp)
+        return Double(dbhp)!
     }
     
-    public func getHPInWatt() -> Int {
-        return Int(self.battery1)*self.current
+    public func getHPInWatt() -> Double {
+        let hp = (self.battery1 * Double(self.current))
+        let dbhp = String(format: "%.2f", hp)
+        return Double(dbhp)!
+        
         //return 745.699872 * Double(self.hp)
     }
     
