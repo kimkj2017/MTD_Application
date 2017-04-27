@@ -11,7 +11,7 @@ private let uuid: String = "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
 private let rx = "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
 private let tx = "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
 
-var sampleData = MowerDataObject()
+let sampleData = MowerDataObject()
 public var dataStream = ""
 var date1 = NSDate()
 
@@ -215,7 +215,7 @@ class ViewController: UIViewController {
         
     }
     
-    func setData() {
+    public func setData() {
         changeBatteryColor()
         ctrlTempMain?.text = String(sampleData.getCtrlTemp())
         motorTempMain?.text = String(sampleData.getMotorTemp())
@@ -262,10 +262,9 @@ extension ViewController: CBPeripheralDelegate {
                 if (dataStream != "") {
                     // Call parser with the data collected
                     parse(data: dataStream, mowerData: sampleData)
-                    dataStream = ""
-                    
-                    setData()
                 }
+                dataStream = ""
+                setData()
             }
             
             if let d = dataBLE {
@@ -361,7 +360,7 @@ extension ViewController: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         //print("data: \(dataStream)")
-        //print("Disconnected from: \(String(describing: peripheral.name))")
+        print("Disconnected from: \(String(describing: peripheral.name))")
     }
     
     
