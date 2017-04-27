@@ -102,6 +102,20 @@ class MowerDataObject {
         return self.instance!
     }
     
+    public func recvData(battery1: UInt32, battery2: UInt32,
+        motorTemp: UInt32, ctrlTemp: UInt32,
+        hp: UInt32, motorSpeed: UInt32, current: UInt32,
+        saved: Double) {
+        self.battery1 = battery1
+        self.battery2 = battery2
+        self.motorTemp = motorTemp
+        self.ctrlTemp = ctrlTemp
+        self.hp = hp
+        self.motorSpeed = motorSpeed
+        self.current = current
+        self.saved = saved
+    }
+    
     public func getBatteryOne() -> UInt32 {
         return self.battery1
     }
@@ -118,8 +132,17 @@ class MowerDataObject {
         return self.ctrlTemp
     }
     
+    public static func getFahrenheitTemperature(tmp: UInt32) -> UInt32 {
+        let newTmp: Double = Double(tmp) * 1.8 + 32.0
+        return UInt32(newTmp)
+    }
+    
     public func getHP() -> UInt32 {
         return self.hp
+    }
+    
+    public func getHPInWatt() -> UInt32 {
+        return UInt32(745.699872 * Double(self.hp))
     }
     
     public func getMotorSpeed() -> UInt32 {
