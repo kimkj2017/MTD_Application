@@ -175,6 +175,56 @@ class ViewController: UIViewController {
     @IBOutlet weak var currentMain = UILabel()
     @IBOutlet weak var currentPage = UILabel()
     
+    @IBOutlet weak var motorTempUnit: UILabel!
+    @IBOutlet weak var ctrlTempUnit: UILabel!
+    @IBOutlet weak var hpUnit: UILabel!
+    
+    
+    @IBAction func motorTempUnit(_ sender: UISegmentedControl) {
+        switch (sender.selectedSegmentIndex) {
+        case 0:
+            motorTempPage?.text = String(sampleData.getMotorTemp())
+            motorTempUnit.text = "°C"
+            break
+        case 1:
+            let fahrenheit = MowerDataObject.getFahrenheitTemperature(tmp: sampleData.getMotorTemp())
+            motorTempPage?.text = String(fahrenheit)
+            motorTempUnit.text = "°F"
+            break
+        default:
+            print("Error")
+        }
+    }
+    @IBAction func ctrlTempUnit(_ sender: UISegmentedControl) {
+        switch (sender.selectedSegmentIndex) {
+        case 0:
+            ctrlTempPage?.text = String(sampleData.getMotorTemp())
+            ctrlTempUnit.text = "°C"
+            break
+        case 1:
+            let fahrenheit = MowerDataObject.getFahrenheitTemperature(tmp: sampleData.getCtrlTemp())
+            ctrlTempPage?.text = String(fahrenheit)
+            ctrlTempUnit.text = "°F"
+            break
+        default:
+            print("Error")
+        }
+    }
+    @IBAction func hpUnitChange(_ sender: UISegmentedControl) {
+        switch (sender.selectedSegmentIndex) {
+        case 0:
+            hpPage?.text = String(sampleData.getHP())
+            hpUnit.text = "HP"
+            break
+        case 1:
+            hpPage?.text = String(sampleData.getHPInWatt())
+            hpUnit.text = "WATT"
+            break
+        default:
+            print("Error")
+        }
+    }
+    
     var manager: CBCentralManager?
     var peripheral: CBPeripheral?
     var write: CBCharacteristic? 
