@@ -12,8 +12,28 @@ class MotorTempController: UIViewController {
     @IBOutlet weak var mtLabel = UITextField()
     var taxLabel = String()
     
+    @IBOutlet weak var segCtrl = UISegmentedControl()
+    
+    
+    @IBAction func valueChanged(_ sender: UISegmentedControl) {
+        print(sender.isMomentary)
+        print(sender.selectedSegmentIndex)
+        switch (sender.selectedSegmentIndex) {
+        case 0:
+            mtLabel?.text = taxLabel
+            break
+        case 1:
+            let fahrenheit = UInt32(taxLabel)
+            mtLabel?.text = String(UInt32(32.0 + 1.8 * Double(fahrenheit!)))
+            break
+        default:
+            mtLabel?.text = "Unexpected error occurred."
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mtLabel?.text = taxLabel
+        
     }
 }

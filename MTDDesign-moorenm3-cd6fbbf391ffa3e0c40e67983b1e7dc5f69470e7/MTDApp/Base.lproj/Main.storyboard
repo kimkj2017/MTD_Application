@@ -1420,6 +1420,9 @@
                                     <segment title="Fahrenheit"/>
                                 </segments>
                                 <color key="tintColor" red="0.0" green="0.56129335729999996" blue="0.24612650550000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="valueChanged:" destination="V5p-Qo-Rtt" eventType="valueChanged" id="NHR-as-o4T"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTI-Dq-dr7">
                                 <rect key="frame" x="45" y="44" width="285" height="42"/>
@@ -1473,6 +1476,7 @@
                     </view>
                     <connections>
                         <outlet property="mtLabel" destination="A9l-C7-9Xg" id="lhu-MQ-bFA"/>
+                        <outlet property="segCtrl" destination="aiE-ii-mFU" id="lrY-LM-Vum"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wLN-tI-PN1" userLabel="First Responder" sceneMemberID="firstResponder"/>
