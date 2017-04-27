@@ -41,27 +41,26 @@ class ViewController: UIViewController {
     
     var manager: CBCentralManager?
     var peripheral: CBPeripheral?
-    var write: CBCharacteristic?  {
-        didSet {
-            // Comment this all out when connecting to lawnmower
-            // 6). Called when writing to the device
-            if let write = write {
-                /*if let test = "+++\r\n".data(using: .utf8) {//+++\r\nAT+BAUDRATE=115200\r\n+++\r\nhello\r\n".data(using: .utf8) {
-    
-                    print("Sending... \(String(describing: test))")
-                    peripheral?.writeValue(test, for: write, type: CBCharacteristicWriteType.withResponse)
-                    //print("Wrote to device\n")
-                }*/
-                if let test = "AT+HELP\r\n".data(using: .utf8) {//+++\r\nAT+BAUDRATE=115200\r\n+++\r\nhello\r\n".data(using: .utf8) {
-                    
-                    print("Sending... \(String(describing: test))")
-                    peripheral?.writeValue(test, for: write, type: CBCharacteristicWriteType.withResponse)
-                    //print("Wrote to device\n")
-                }
-                
-            }
-        }
-    }
+    var write: CBCharacteristic?  //{
+//        didSet {
+//            // Comment this all out when connecting to lawnmower
+//            // 6). Called when writing to the device
+//            if let write = write {
+//                if let test = "+++\n".data(using: .utf8) {
+//                    //print("Sending... \(String(describing: test))")
+//                    peripheral?.writeValue(test, for: write, type: CBCharacteristicWriteType.withResponse)
+//                }
+//                if let test = "AT+BAUDRATE=115200".data(using: .utf8) {
+//                    //print("Sending... \(String(describing: test))")
+//                    peripheral?.writeValue(test, for: write, type: CBCharacteristicWriteType.withResponse)
+//                }
+//                if let test = "+++\n".data(using: .utf8) {
+//                    //print("Sending... \(String(describing: test))")
+//                    peripheral?.writeValue(test, for: write, type: CBCharacteristicWriteType.withResponse)
+//                }
+//            }
+//        }
+    //}
     
     var read: CBCharacteristic?  {
         didSet {
@@ -120,11 +119,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         manager = CBCentralManager(delegate: self, queue: nil)
         setData()
-//        battery1LabelMain?.text = "120 %" // battery1LabelPage?.text
-//        battery2LabelMain?.text = "32 %" //battery2LabelPage?.text
-//        ctrlTempMain?.text = "76" //ctrlTempPage?.text
-//        motorTempMain?.text = "98" //motorTempPage?.text
-//        currentMain?.text = "352" //currentPage?.text
     }
 }
 
@@ -144,8 +138,7 @@ extension ViewController: CBPeripheralDelegate {
             return
         }
         
-        print("\(characteristic)\n")
-        //let  n = characteristic.value
+        //print("\(characteristic)\n")
         
         /*
         let a = n?.count
@@ -159,53 +152,62 @@ extension ViewController: CBPeripheralDelegate {
         
         
         //print("\(String(describing: characteristic.value))\n")
-        /*
-        // Parse characteristic
-        let parts = String(describing: characteristic).components(separatedBy: ",")
-        let valSep = parts[3].components(separatedBy: "<")
-        let val = (valSep[1].components(separatedBy: ">"))[0]
         
-        // Parse and add to dataStream
-        var comma = false
-        var pound = false
-        var newLine = false
-        for i in val.characters {
-            if (i == "3" && pound == true) {
-                // Start of a stream
-                //dataStream = ""
-                dataStream += "#"
-            } else if (i == "a" && newLine == true){
-                // Send dataStream to parser
-                dataStream += "ENDOFSTREAM\n\n"
-            } else if (i == "c" && comma == true) {
-                dataStream += ","
-            } else {
-                dataStream += String(describing: i)
-            }
-            
-            if (i == "2") {
-                pound = true
-                comma = true
-            } else {
-                pound = false
-                comma = false
-            }
-            
-            if (i == "0") {
-                newLine = true
-            } else {
-                newLine = false
-            }
-            
-            //print(i)
-        }
-        */
+//        // Parse characteristic
+//        let parts = String(describing: characteristic).components(separatedBy: ",")
+//        let valSep = parts[3].components(separatedBy: "<")
+//        let val = (valSep[1].components(separatedBy: ">"))[0]
+//        
+//        // Parse and add to dataStream
+//        var comma = false
+//        var pound = false
+//        var newLine = false
+//        for i in val.characters {
+//            if (i == "3" && pound == true) {    // Start of a stream
+//                dataStream = "#"
+//                pound = false
+//            } else if (i == "a" && newLine == true){
+//                // Send dataStream to parser
+//                print("\(dataStream)\n\n")
+//                dataStream = ""
+//                newLine = false
+//            } else if (i == "c" && comma == true) {
+//                dataStream += ","
+//                comma = false
+//            } else if (pound == true || comma == true) {
+//                dataStream += "2"
+//                pound = false
+//                comma = false
+//            } else if (newLine == true) {
+//                dataStream += "0"
+//                newLine = false
+//            } else {
+//                if (i != " " || i == "2" || i == "0") {
+//                    dataStream += String(describing: i)
+//                }
+//            }
+//            
+//            if (i == "2") {
+//                pound = true
+//                comma = true
+//            } else {
+//                pound = false
+//                comma = false
+//            }
+//            
+//            if (i == "0") {
+//                newLine = true
+//            } else {
+//                newLine = false
+//            }
+//        }
+        
         // dataStream += String(describing: characteristic.value)
         //print("Read In: \(val)\n")
         //print("Num Bytes: \(String(describing: characteristic.value))\n")
         //dataStream += val
         
-        
+        /*
         // Incorrect Idea :(
         if let data = characteristic.value {
             //print("Data: \(data)")
@@ -214,18 +216,19 @@ extension ViewController: CBPeripheralDelegate {
             //(data as NSData).getBytes(&bytes, length: data.count)
             //print(bytes)
             
-            if let str = String(data: data, encoding: String.Encoding.utf8) { //.ascii) {
-            //let str = String(describing: data)
+            //if let str = String(data: data, encoding: String.Encoding.utf8) { //.ascii) {
+            let str = String(describing: data)
                 print("Read In: \(str)\n")
                 //dataStream += str
                 // Place data in struct?
             }
-        }
+        }*/
     }
     
     // 4). Called when services are found, after connection
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        //print("Discovered services for: \(String(describing: peripheral.name)) \nServices are: \(String(describing: peripheral.services))\n")
+        
+        //print("Discovered services for: \(String(describing: peripheral.name))\n")
         
         // Throw error if present
         if let error = error {
@@ -244,6 +247,7 @@ extension ViewController: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         
         //print("Discovered characteristics for: \(String(describing: service.characteristics))\n")
+        //print("Discovered characteristics #: \(String(describing: service.characteristics?.count))\n")
         
         // Throw error if present
         if let error = error {
@@ -299,6 +303,7 @@ extension ViewController: CBCentralManagerDelegate {
         //print("Connected to \(String(describing: peripheral.name))")
         peripheral.delegate = self
         let cbuuid = CBUUID(string: uuid)
+        //let cbuuid = CBUUID()
         
         peripheral.discoverServices([cbuuid])
     }
