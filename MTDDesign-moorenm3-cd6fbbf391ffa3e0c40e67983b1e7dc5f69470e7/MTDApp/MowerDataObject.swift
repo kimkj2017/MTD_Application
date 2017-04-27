@@ -162,10 +162,8 @@ class MowerDataObject {
     
     public func getHPInWatt() -> Double {
         let hp = (self.battery1 * Double(self.current))
-        let dbhp = String(format: "%.2f", hp)
+        let dbhp = String(format: "%.1f", hp)
         return Double(dbhp)!
-        
-        //return 745.699872 * Double(self.hp)
     }
     
     public func getMotorSpeed() -> Int {

@@ -42,7 +42,7 @@ class ViewController: UIViewController {
     func getErrors(alm : Int){
         
         let date2 = NSDate().timeIntervalSince(date1 as Date);
-        if (date2 > 60) {
+        if (date2 > 10) {
             
             var str = String(alm, radix: 2)
             str = pad(string : str, toSize : 19)
@@ -278,7 +278,7 @@ class ViewController: UIViewController {
         hpPage?.text = String(sampleData.getHP())
         currentPage?.text = String(sampleData.getCurrent())
         motorSpeedPage?.text = String(sampleData.getMotorSpeed())
-        //getErrors(getAlararmCode())
+        getErrors(alm: sampleData.getAlarmCode())
     }
     
     override func viewDidLoad() {
