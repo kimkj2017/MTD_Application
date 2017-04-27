@@ -7,11 +7,11 @@
 //
 
 
-func parse(data: String) {
+func parse(data: String, mowerData: MowerDataObject) {
     // Separate string by the commas
     let dataParsed = data.components(separatedBy: ",")
     
-    print(data)
+    //print(data)
     
     // Check that the device is connected to a lawn mower
     if dataParsed[0] == "#4" {
@@ -55,6 +55,22 @@ func parse(data: String) {
             ms = m
         }
     
-        print("Alarm Code: \(String(describing: ac))\nCurrent: \(String(describing: cur))\nVoltage1: \(String(describing: v1))\nVoltage2: \(String(describing: v2))\nMotorTemp: \(String(describing: mt))\nControlTemp: \(String(describing: ct))\nMotorSpeed: \(String(describing: ms))\n")
+        //print("Alarm Code: \(String(describing: ac))\nCurrent: \(String(describing: cur))\nVoltage1: \(String(describing: v1))\nVoltage2: \(String(describing: v2))\nMotorTemp: \(String(describing: mt))\nControlTemp: \(String(describing: ct))\nMotorSpeed: \(String(describing: ms))\n")
+        
+        mowerData.setBatteryOne(bat1: v1)
+        mowerData.setBatteryTwo(bat2: v2)
+        mowerData.setMotorTemp(mt: Int(mt))
+        mowerData.setCtrlTemp(ct: Int(ct))
+        mowerData.setMotorSpeed(ms: ms)
+        mowerData.setCurrent(cur: Int(cur))
+        mowerData.setAlarmCode(ac: ac)
     }
 }
+
+
+
+
+
+
+
+

@@ -21,18 +21,30 @@ class MowerDataObject {
     
     private var battery1: Double
     private var battery2: Double
-    private var motorTemp: Double
-    private var ctrlTemp: Double
-    private var hp: Double
+    private var motorTemp: Int
+    private var ctrlTemp: Int
+    private var hp: Int
     private var motorSpeed: Int
-    private var current: Double
-    private var saved: Double
+    private var current: Int
+    private var saved: Int
     private var alarmcd: Int
     
-    private init(battery1: Double, battery2: Double,
-                 motorTemp: Double, ctrlTemp: Double,
-                 hp: Double, motorSpeed: Int, current: Double,
-                 saved: Double, alarmcd: Int) {
+    public init() {
+        self.battery1 = 0
+        self.battery2 = 0
+        self.motorTemp = 0
+        self.ctrlTemp = 0
+        self.hp = 0
+        self.motorSpeed = 0
+        self.current = 0
+        self.saved = 0
+        self.alarmcd = 0
+    }
+    
+    public init(battery1: Double, battery2: Double,
+                 motorTemp: Int, ctrlTemp: Int,
+                 hp: Int, motorSpeed: Int, current: Int,
+                 saved: Int, alarmcd: Int) {
         self.battery1 = battery1
         self.battery2 = battery2
         self.motorTemp = motorTemp
@@ -105,9 +117,9 @@ class MowerDataObject {
     }*/
     
     public func recvData(battery1: Double, battery2: Double,
-        motorTemp: Double, ctrlTemp: Double,
-        hp: Double, motorSpeed: Int, current: Double,
-        saved: Double, alaramcd: Int) {
+        motorTemp: Int, ctrlTemp: Int,
+        hp: Int, motorSpeed: Int, current: Int,
+        saved: Int, alaramcd: Int) {
         self.battery1 = battery1
         self.battery2 = battery2
         self.motorTemp = motorTemp
@@ -118,6 +130,8 @@ class MowerDataObject {
         self.saved = saved
     }
     
+    /* Getters */
+    
     public func getBatteryOne() -> Double {
         return self.battery1
     }
@@ -126,26 +140,26 @@ class MowerDataObject {
         return self.battery2
     }
     
-    public func getMotorTemp() -> Double {
+    public func getMotorTemp() -> Int {
         return self.motorTemp
     }
     
-    public func getCtrlTemp() -> Double {
+    public func getCtrlTemp() -> Int {
         return self.ctrlTemp
     }
     
-    public static func getFahrenheitTemperature(tmp: Double) -> Double {
+    public static func getFahrenheitTemperature(tmp: Int) -> Int {
         let newTmp: Double = Double(tmp) * 1.8 + 32.0
-        return newTmp
+        return Int(newTmp)
     }
     
-    public func getHP() -> Double {
-        return (self.battery1*self.current)/746
+    public func getHP() -> Int {
+        return Int((Int(self.battery1) * self.current)/746)
         //return self.hp
     }
     
-    public func getHPInWatt() -> Double {
-        return self.battery1*self.current
+    public func getHPInWatt() -> Int {
+        return Int(self.battery1)*self.current
         //return 745.699872 * Double(self.hp)
     }
     
@@ -153,14 +167,45 @@ class MowerDataObject {
         return self.motorSpeed
     }
     
-    public func getCurrent() -> Double {
+    public func getCurrent() -> Int {
         return self.current
     }
     
-    public func getSaved() -> Double {
+    public func getSaved() -> Int {
         return self.saved
     }
     public func getAlarmCode() -> Int {
         return self.alarmcd
+    }
+    
+    
+    /* Setters */
+    
+    public func setBatteryOne(bat1: Double)  {
+        self.battery1 = bat1
+    }
+    
+    public func setBatteryTwo(bat2: Double) {
+        self.battery2 = bat2
+    }
+    
+    public func setMotorTemp(mt: Int) {
+        self.motorTemp = mt
+    }
+    
+    public func setCtrlTemp(ct: Int) {
+        self.ctrlTemp = ct
+    }
+    
+    public func setMotorSpeed(ms: Int) {
+        self.motorSpeed = ms
+    }
+    
+    public func setCurrent(cur: Int) {
+        self.current = cur
+    }
+    
+    public func setAlarmCode(ac: Int) {
+        self.alarmcd = ac
     }
 }
