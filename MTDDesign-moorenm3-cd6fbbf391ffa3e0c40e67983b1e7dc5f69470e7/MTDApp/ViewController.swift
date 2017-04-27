@@ -6,10 +6,13 @@
 import UIKit
 import CoreBluetooth
 
+// UUID information to receive and transmit to the bluetooth
 private let uuid: String = "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
 private let rx = "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
 private let tx = "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
-var dataStream = ""
+
+public var dataStream = ""
+
 var date1 = NSDate()
 
 class ViewController: UIViewController {
@@ -130,7 +133,7 @@ extension ViewController: CBPeripheralDelegate {
     
     // 7). Called when there's new data to be read from the device
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        //print("Updated value for UUID: \(characteristic.uuid)\n")
+        // print("Updated value for UUID: \(characteristic.uuid)\n")
         
         // Throw error if present
         if let error = error {
@@ -138,91 +141,21 @@ extension ViewController: CBPeripheralDelegate {
             return
         }
         
-        //print("\(characteristic)\n")
-        
-        /*
-        let a = n?.count
-        print(a)
-        let bbb = UnsafeMutableRawPointer.allocate(bytes: 1000, alignedTo: 1)
-        n.copyBytes(to: bbb.assumingMemoryBound(to: BYTE_SIZE))
-        for q in bbb {
-            print(q)
-        }
-        */
-        
-        
-        //print("\(String(describing: characteristic.value))\n")
-        
-//        // Parse characteristic
-//        let parts = String(describing: characteristic).components(separatedBy: ",")
-//        let valSep = parts[3].components(separatedBy: "<")
-//        let val = (valSep[1].components(separatedBy: ">"))[0]
-//        
-//        // Parse and add to dataStream
-//        var comma = false
-//        var pound = false
-//        var newLine = false
-//        for i in val.characters {
-//            if (i == "3" && pound == true) {    // Start of a stream
-//                dataStream = "#"
-//                pound = false
-//            } else if (i == "a" && newLine == true){
-//                // Send dataStream to parser
-//                print("\(dataStream)\n\n")
-//                dataStream = ""
-//                newLine = false
-//            } else if (i == "c" && comma == true) {
-//                dataStream += ","
-//                comma = false
-//            } else if (pound == true || comma == true) {
-//                dataStream += "2"
-//                pound = false
-//                comma = false
-//            } else if (newLine == true) {
-//                dataStream += "0"
-//                newLine = false
-//            } else {
-//                if (i != " " || i == "2" || i == "0") {
-//                    dataStream += String(describing: i)
-//                }
-//            }
-//            
-//            if (i == "2") {
-//                pound = true
-//                comma = true
-//            } else {
-//                pound = false
-//                comma = false
-//            }
-//            
-//            if (i == "0") {
-//                newLine = true
-//            } else {
-//                newLine = false
-//            }
-//        }
-        
-        // dataStream += String(describing: characteristic.value)
-        //print("Read In: \(val)\n")
-        //print("Num Bytes: \(String(describing: characteristic.value))\n")
-        //dataStream += val
-        
-        /*
-        // Incorrect Idea :(
         if let data = characteristic.value {
-            //print("Data: \(data)")
-        
-            //var bytes = [UInt8](repeating: 0, count: data.count / MemoryLayout<UInt8>.size)
-            //(data as NSData).getBytes(&bytes, length: data.count)
-            //print(bytes)
-            
-            //if let str = String(data: data, encoding: String.Encoding.utf8) { //.ascii) {
-            let str = String(describing: data)
-                print("Read In: \(str)\n")
-                //dataStream += str
-                // Place data in struct?
+            let dataBLE = String(data: data, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+            if (dataBLE?.characters.first == "#") {
+                if (dataStream != "") {
+                    // Call parser with the data collected
+                    parse(data: dataStream)
+                    dataStream = ""
+                }
             }
-        }*/
+            
+            if let d = dataBLE {
+                dataStream += d
+                //print("DATA: \(String(describing: d)) \n")
+            }
+        }
     }
     
     // 4). Called when services are found, after connection
