@@ -19,19 +19,20 @@ class MowerDataObject {
                              arc4random_uniform(100),arc4random_uniform(100),
                              arc4random_uniform(100),arc4random_uniform(100)]
     
-    private var battery1: UInt32
-    private var battery2: UInt32
-    private var motorTemp: UInt32
-    private var ctrlTemp: UInt32
-    private var hp: UInt32
-    private var motorSpeed: UInt32
-    private var current: UInt32
+    private var battery1: Double
+    private var battery2: Double
+    private var motorTemp: Double
+    private var ctrlTemp: Double
+    private var hp: Double
+    private var motorSpeed: Int
+    private var current: Double
     private var saved: Double
+    private var alarmcd: Int
     
-    private init(battery1: UInt32, battery2: UInt32,
-                 motorTemp: UInt32, ctrlTemp: UInt32,
-                 hp: UInt32, motorSpeed: UInt32, current: UInt32,
-                 saved: Double) {
+    private init(battery1: Double, battery2: Double,
+                 motorTemp: Double, ctrlTemp: Double,
+                 hp: Double, motorSpeed: Int, current: Double,
+                 saved: Double, alarmcd: Int) {
         self.battery1 = battery1
         self.battery2 = battery2
         self.motorTemp = motorTemp
@@ -40,30 +41,31 @@ class MowerDataObject {
         self.motorSpeed = motorSpeed
         self.current = current
         self.saved = saved
+        self.alarmcd = alarmcd
     }
     
     private static var instance: MowerDataObject? = nil
     
-    public static func getInstance() -> MowerDataObject {
+    /*public static func getInstance() -> MowerDataObject {
         if (instance == nil) {
             let rTestVar = arc4random_uniform(5)
             switch (rTestVar) {
             case 0:
-                self.instance = MowerDataObject(battery1: UInt32(SampleData1[0]),
-                                                battery2: UInt32(SampleData1[1]),
-                                                motorTemp: UInt32(SampleData1[2]),
-                                                ctrlTemp: UInt32(SampleData1[3]),
-                                                hp: UInt32(SampleData1[4]),
-                                                motorSpeed: UInt32(SampleData1[5]),
-                                                current: UInt32(SampleData1[6]),
+                self.instance = MowerDataObject(battery1: Int(SampleData1[0]),
+                                                battery2: Int(SampleData1[1]),
+                                                motorTemp: Int(SampleData1[2]),
+                                                ctrlTemp: Int(SampleData1[3]),
+                                                hp: Int(SampleData1[4]),
+                                                motorSpeed: Int(SampleData1[5]),
+                                                current: Int(SampleData1[6]),
                                                 saved: Double(SampleData1[7]))
                 break
             case 1:
-                self.instance = MowerDataObject(battery1: UInt32(SampleData2[0]),
-                                                battery2: UInt32(SampleData2[1]),
-                                                motorTemp: UInt32(SampleData2[2]),
-                                                ctrlTemp: UInt32(SampleData2[3]),
-                                                hp: UInt32(SampleData2[4]),
+                self.instance = MowerDataObject(battery1: Int(SampleData2[0]),
+                                                battery2: Int(SampleData2[1]),
+                                                motorTemp: Int(SampleData2[2]),
+                                                ctrlTemp: Int(SampleData2[3]),
+                                                hp: Int(SampleData2[4]),
                                                 motorSpeed: UInt32(SampleData2[5]),
                                                 current: UInt32(SampleData2[6]),
                                                 saved: Double(SampleData2[7]))
@@ -100,12 +102,12 @@ class MowerDataObject {
             }
         }
         return self.instance!
-    }
+    }*/
     
-    public func recvData(battery1: UInt32, battery2: UInt32,
-        motorTemp: UInt32, ctrlTemp: UInt32,
-        hp: UInt32, motorSpeed: UInt32, current: UInt32,
-        saved: Double) {
+    public func recvData(battery1: Double, battery2: Double,
+        motorTemp: Double, ctrlTemp: Double,
+        hp: Double, motorSpeed: Int, current: Double,
+        saved: Double, alaramcd: Int) {
         self.battery1 = battery1
         self.battery2 = battery2
         self.motorTemp = motorTemp
@@ -116,44 +118,49 @@ class MowerDataObject {
         self.saved = saved
     }
     
-    public func getBatteryOne() -> UInt32 {
+    public func getBatteryOne() -> Double {
         return self.battery1
     }
     
-    public func getBatteryTwo() -> UInt32 {
+    public func getBatteryTwo() -> Double {
         return self.battery2
     }
     
-    public func getMotorTemp() -> UInt32 {
+    public func getMotorTemp() -> Double {
         return self.motorTemp
     }
     
-    public func getCtrlTemp() -> UInt32 {
+    public func getCtrlTemp() -> Double {
         return self.ctrlTemp
     }
     
-    public static func getFahrenheitTemperature(tmp: UInt32) -> UInt32 {
+    public static func getFahrenheitTemperature(tmp: Double) -> Double {
         let newTmp: Double = Double(tmp) * 1.8 + 32.0
-        return UInt32(newTmp)
+        return newTmp
     }
     
-    public func getHP() -> UInt32 {
-        return self.hp
+    public func getHP() -> Double {
+        return (self.battery1*self.current)/746
+        //return self.hp
     }
     
-    public func getHPInWatt() -> UInt32 {
-        return UInt32(745.699872 * Double(self.hp))
+    public func getHPInWatt() -> Double {
+        return self.battery1*self.current
+        //return 745.699872 * Double(self.hp)
     }
     
-    public func getMotorSpeed() -> UInt32 {
+    public func getMotorSpeed() -> Int {
         return self.motorSpeed
     }
     
-    public func getCurrent() -> UInt32 {
+    public func getCurrent() -> Double {
         return self.current
     }
     
     public func getSaved() -> Double {
         return self.saved
+    }
+    public func getAlarmCode() -> Int {
+        return self.alarmcd
     }
 }

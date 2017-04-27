@@ -12,17 +12,152 @@ private let tx = "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
 var dataStream = ""
 var date1 = NSDate()
 
+extension String {
+    subscript (i: Int) -> Character {
+        return self[self.characters.index(self.startIndex, offsetBy: i)]
+    }
+    
+    subscript (i: Int) -> String {
+        return String(self[i] as Character)
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        let start = index(startIndex, offsetBy: r.lowerBound)
+        let end = index(startIndex, offsetBy: r.upperBound)
+        return self[start..<end]
+    }
+    
+    subscript (r: ClosedRange<Int>) -> String {
+        let start = index(startIndex, offsetBy: r.lowerBound)
+        let end = index(startIndex, offsetBy: r.upperBound)
+        return self[start...end]
+    }
+}
+
+
 class ViewController: UIViewController {
-    @IBAction func showAlert(_ sender: AnyObject) {
-        let date2 = NSDate().timeIntervalSince(date1 as Date);
-        if (date2 > 10) {
-            let alertController = UIAlertController(title: "ERROR  CODE 8", message: "Battery Temperature Warning", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
-            date1 = NSDate();
+   
+    
+    func getErrors(alm : Int){
         
+        let date2 = NSDate().timeIntervalSince(date1 as Date);
+        if (date2 > 60) {
+            
+            var str = String(alm, radix: 2)
+            str = pad(string : str, toSize : 19)
+    
+            switch str {
+            
+                case str where str[0] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 0", message: "Controller Temperature Warning", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                
+                case str where str[1] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 1", message: "Controller Temperature Error", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+            
+                case str where str[2] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 2", message: "Battery Voltage Error", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+            
+                case str where str[3] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 3", message: "Current Warning", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+            
+                case str where str[4] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE $", message: "Current Error", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+            
+                case str where str[5] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 5", message: "Battery UV/OT", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+            
+                case str where str[6] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 6", message: "Battery OV", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+
+                case str where str[7] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 7", message: "Battery ID Invalid", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                
+                case str where str[8] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 8", message: "Battery Temperature Warning", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+            
+                case str where str[9] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 9", message: "Battery Temperature Error", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+            
+                case str where str[10] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 10", message: "Motor Speed Low", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+            
+                case str where str[11] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 11", message: "Motor Speed High", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                
+                case str where str[12] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 12", message: "Motor Temperature Warning", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                
+                case str where str[13] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 13", message: "Motor Temperature Error", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+            
+                case str where str[14] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 14", message: "Keep Alive FET Monitor Error", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+            
+                case str where str[15] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 15", message: "Panel Communications Error", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+            
+                case str where str[16] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 16", message: "Keep Alive FET Short Error", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                
+                case str where str[17] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 17", message: "Processor Temperature Warning", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                
+                case str where str[18] == "1":
+                    let alertController = UIAlertController(title: "ERROR CODE 18", message: "Processor Temperature Error", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "I Understand", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                
+                default:
+                    break
+            }
+            date1 = NSDate();
         }
     }
+    
+    func pad(string : String, toSize: Int) -> String {
+        var padded = string
+        for _ in 0..<(toSize - string.characters.count) {
+            padded = "0" + padded
+        }
+        return padded
+    }
+
     
     @IBOutlet weak var battery1Main = UIButton()
     @IBOutlet weak var battery1Page = UIButton()
@@ -113,6 +248,7 @@ class ViewController: UIViewController {
         hpPage?.text = String(sampleData.getHP())
         currentPage?.text = String(sampleData.getCurrent())
         motorSpeedPage?.text = String(sampleData.getMotorSpeed())
+        //getErrors(getAlararmCode())
     }
     
     override func viewDidLoad() {
@@ -326,6 +462,6 @@ extension ViewController: CBCentralManagerDelegate {
         central.connect(peripheral, options: nil)
         central.stopScan()
     }
-    
 }
+
 
