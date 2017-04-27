@@ -6,53 +6,55 @@
 //  Copyright © 2017 MTDGroup. All rights reserved.
 //
 
-import Foundation
 
-struct valueStruct {
-    var alarmCode: Int
-    var current: Int
-    var voltage1: Int
-    var voltage2: Int
-    var motorTemp: Int
-    var controlTemp: Int
-    var motorSpeed: Int
+func parse(data: String) {
+    // Separate string by the commas
+    let dataParsed = data.components(separatedBy: ",")
     
-    init(alarmCode: Int, current: Int, voltage1: Int, voltage2: Int, motorTemp: Int, controlTemp: Int, motorSpeed: Int) {
-        self.alarmCode = alarmCode
-        self.current = current
-        self.voltage1 = voltage1
-        self.voltage2 = voltage2
-        self.motorTemp = motorTemp
-        self.controlTemp = controlTemp
-        self.motorSpeed = motorSpeed
+    print(data)
+    
+    // Check that the device is connected to a lawn mower
+    if dataParsed[0] == "#4" {
+        var ac = 0
+        if let a = Int(dataParsed[1]) {
+            ac = a
+        }
+
+        // Current 1 / 100
+        var cur = 0.0
+        if let c = Double(dataParsed[3]) {
+            cur = c / 100
+        }
         
-        print("Alarm Code: \(alarmCode)\nCurrent: \(current)\nVoltage1: \(voltage1)\nVoltage2: \(voltage2)\n")
+        // Voltage 1 / 100
+        var v1 = 0.0
+        if let v = Double(dataParsed[5]) {
+            v1 = v / 100
+        }
+    
+        // Voltage 2 / 100
+        var v2 = 0.0
+        if let v = Double(dataParsed[6]) {
+            v2 = v / 100
+        }
+    
+        // Motor Temp / 11.5
+        var mt = 0.0
+        if let m = Double(dataParsed[14]) {
+            mt = m / 11.5
+        }
+        
+        // Control Temp / 11.5
+        var ct = 0.0
+        if let c = Double(dataParsed[15]) {
+            ct = c / 11.5
+        }
+        
+        var ms = 0
+        if let m = Int(dataParsed[19]) {
+            ms = m
+        }
+    
+        print("Alarm Code: \(String(describing: ac))\nCurrent: \(String(describing: cur))\nVoltage1: \(String(describing: v1))\nVoltage2: \(String(describing: v2))\nMotorTemp: \(String(describing: mt))\nControlTemp: \(String(describing: ct))\nMotorSpeed: \(String(describing: ms))\n")
     }
-    
 }
-
-
-func parse(data: String) -> valueStruct {
-    let dataString = data
-    let dataParsed = dataString.components(separatedBy: ",")
-    
-    //let acHex = UInt8(strtoul(dataParsed[1], nil, 16))
-    //print(acHex)
-    
-    let ac = Int(dataParsed[1], radix: 16)
-    let cur = Int(dataParsed[3], radix: 16)
-    let v1 = Int(dataParsed[4], radix: 16)
-    let v2 = Int(dataParsed[5], radix: 16)
-    let mt = Int(dataParsed[13], radix: 16)
-    let ct = Int(dataParsed[14], radix: 16)
-    let ms = Int(dataParsed[18], radix: 16)
-    let values = valueStruct(alarmCode: ac!, current: cur!, voltage1: v1!, voltage2: v2!, motorTemp: mt!, controlTemp: ct!, motorSpeed: ms!)
-    return values
-}
-
-
-
-
-
-//var data = parse(data: "#0,00000,0000,0000,0000,0000,0,000,000,00,00,000,000,000,000,000,000,00000,00000,0000,0,0,00,0000,00000,0\n")
-
