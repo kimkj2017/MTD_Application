@@ -1496,10 +1496,7 @@
         <image name="troy-bilt.png" width="1619" height="226"/>
     </resources>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
-        <segue reference="7rG-Nw-V1X"/>
-=======
+        <!--segue reference="7rG-Nw-V1X"/-->
         <segue reference="g1Y-kX-HHu"/>
->>>>>>> fb0969b813721ed3499f219e4de370332abe2b84
     </inferredMetricsTieBreakers>
 </document>
