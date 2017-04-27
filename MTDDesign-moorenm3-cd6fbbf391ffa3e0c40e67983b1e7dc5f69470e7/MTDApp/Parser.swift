@@ -6,34 +6,8 @@
 //  Copyright © 2017 MTDGroup. All rights reserved.
 //
 
-import Foundation
 
-struct valueStruct {
-    var alarmCode: Int
-    var current: Int
-    var voltage1: Int
-    var voltage2: Int
-    var motorTemp: Int
-    var controlTemp: Int
-    var motorSpeed: Int
-    
-    init(alarmCode: Int, current: Int, voltage1: Int, voltage2: Int, motorTemp: Int, controlTemp: Int, motorSpeed: Int) {
-        self.alarmCode = alarmCode
-        self.current = current
-        self.voltage1 = voltage1
-        self.voltage2 = voltage2
-        self.motorTemp = motorTemp
-        self.controlTemp = controlTemp
-        self.motorSpeed = motorSpeed
-        // HORSEPOWER
-        
-//        print("Alarm Code: \(alarmCode)\nCurrent: \(current)\nVoltage1: \(voltage1)\nVoltage2: \(voltage2)\nMotorTemp: \(motorTemp)\nControlTemp: \(controlTemp)\nMotorSpeed: \(motorSpeed)\n")
-    }
-    
-}
-
-
-func parse(data: String) { // -> valueStruct {
+func parse(data: String) {
     // Separate string by the commas
     let dataParsed = data.components(separatedBy: ",")
     
