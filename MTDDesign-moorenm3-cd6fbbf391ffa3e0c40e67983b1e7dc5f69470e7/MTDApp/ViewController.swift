@@ -174,7 +174,28 @@ class ViewController: UIViewController {
     @IBOutlet weak var motorSpeedPage = UILabel()
     @IBOutlet weak var currentMain = UILabel()
     @IBOutlet weak var currentPage = UILabel()
+    @IBOutlet weak var priceGas = UITextField()
+    @IBOutlet weak var priceKWH = UITextField()
+    @IBOutlet weak var savedOutput = UILabel()
     
+    
+    @IBAction func ByeByeKeyboard(_ sender: Any) {
+        view.endEditing(true)
+    }
+    
+    
+    @IBAction func getValue(_ sender: UIButton) {
+        let gasInt = Double((priceGas?.text!)!)
+        let eleInt = Double((priceKWH?.text!)!)
+        
+        let gasTotal = Double(sampleData.getGasTime()) * ((gasInt! * 0.00666) / 60.0)
+        let eleTotal = Double(sampleData.getGasTime()) * ((eleInt! * 0.035) / 60.0)
+        
+        let total = gasTotal - eleTotal
+        
+        let hold = String(format: "%.4f", total)
+        savedOutput?.text = "$ " + hold
+    }
     @IBOutlet weak var motorTempUnit: UILabel!
     @IBOutlet weak var ctrlTempUnit: UILabel!
     @IBOutlet weak var hpUnit: UILabel!
@@ -279,6 +300,9 @@ class ViewController: UIViewController {
         currentPage?.text = String(sampleData.getCurrent())
         motorSpeedPage?.text = String(sampleData.getMotorSpeed())
         getErrors(alm: sampleData.getAlarmCode())
+        
+        // Keep time updated for the gas saver
+        // gasTime = Int(NSDate().timeIntervalSince(gasDate as Date));
     }
     
     override func viewDidLoad() {
@@ -409,7 +433,8 @@ extension ViewController: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        //print("data: \(dataStream)")
+        // print("data: \(dataStream)")
+        print("time: \(sampleData.getGasTime())")
         print("Disconnected from: \(String(describing: peripheral.name))")
     }
     

@@ -29,6 +29,9 @@ class MowerDataObject {
     private var saved: Int
     private var alarmcd: Int
     
+    var gasDate = NSDate()
+    var gasTime = 0
+    
     public init() {
         self.battery1 = 0
         self.battery2 = 0
@@ -177,10 +180,14 @@ class MowerDataObject {
     public func getSaved() -> Int {
         return self.saved
     }
+
     public func getAlarmCode() -> Int {
         return self.alarmcd
     }
     
+    public func getGasTime() -> Int {
+        return self.gasTime
+    }
     
     /* Setters */
     
@@ -202,6 +209,11 @@ class MowerDataObject {
     
     public func setMotorSpeed(ms: Int) {
         self.motorSpeed = ms
+        
+        // Keep time updated for the gas saver
+        if (ms != 0) {
+            gasTime = Int(NSDate().timeIntervalSince(gasDate as Date));
+        }
     }
     
     public func setCurrent(cur: Int) {
